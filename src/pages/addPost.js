@@ -1,0 +1,28 @@
+import React, { Component }from 'react';
+import { Layout} from 'antd';
+import 'antd/dist/antd.css';
+import PostNewsLIst from '../components/PostNewsList';
+import HeaderPage from './headerPage';
+import FooterPage from './footerPage';
+
+const { Content} = Layout;
+
+export default class AddPost extends Component {
+
+  render () {
+    return (
+      <Layout>
+        <HeaderPage />
+        <Content style={{ padding: '0 50px', marginTop: 64 }}>
+          <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+            <PostNewsLIst/>
+          </div>
+        </Content>
+        <FooterPage/>
+      </Layout>
+    );
+  }  
+}
+  
+
+
