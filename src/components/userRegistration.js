@@ -9,7 +9,7 @@ export default class UserRegistration extends React.Component {
   }
   handleUserNameChange = event => {
     this.setState({ username: event.target.value });    
-    }
+    } 
   handleEmailChange = event => {   
     this.setState({ email: event.target.value });   
   }
@@ -35,12 +35,6 @@ export default class UserRegistration extends React.Component {
         console.log('addUser', res);
     })
     .catch(e => console.log(e));
-
-    // axios.post(`http://localhost:3000/api/users/login`, {"user":{"email":"test@test.ru","password":"123123123"}})
-    // .then(res => {
-    //     console.log('loginUser', res);
-    // })
-    // .catch(e => console.log(e));
   }
  
   render() {

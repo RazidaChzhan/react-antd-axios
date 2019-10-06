@@ -7,13 +7,12 @@ import AddPost from './pages/addPost';
 import NotFound from './pages/notFound';
 import WrappedNormalLoginForm from './pages/LogIn';
 import MainPage from './pages/mainPage';
-
-
 export default class App extends Component  {
   render () {
     return (
       <Router>
         <Switch>
+          <Route exact path="/" component={MainPage}/> 
           <Route exact path="/allposts" component={MainPage}/> 
           <Route path="/registration" component={Registration} />
           <Route path="/authorization" component={ Authorization} />
