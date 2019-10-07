@@ -1,6 +1,12 @@
 import React from 'react';
 import axios from 'axios';
- 
+import { Input, Tooltip, Icon,  Form, Button } from 'antd';
+import { Layout} from 'antd';
+import '../pages/LogIn';
+import HeaderPage from '../pages/headerPage';
+import FooterPage from '../pages/footerPage';
+
+const { Content} = Layout; 
 export default class UserRegistration extends React.Component {
   state = {
     username: '',
@@ -39,22 +45,34 @@ export default class UserRegistration extends React.Component {
  
   render() {
     return (  
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            User Name:
-            <input type="text" name="username" onChange={this.handleUserNameChange} />
-            <br/><br/>
-            Email:
-            <input type="email" name="email" onChange={this.handleEmailChange} />
-            <br/><br/>
-            Password:
-            <input type="password"  onChange={this.handlePasswordChange} />
-          </label>
+      <Layout>
+        <HeaderPage />
+        <Content style={{ padding: '0 50px', marginTop: 64 }}>
+          <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+          <Form onSubmit={this.handleSubmit} className="login-form">
+           <Input
+             placeholder="Enter your username"
+             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+             suffix={
+            <Tooltip title="Extra information">
+            <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+            </Tooltip>
+            }
+            onChange={this.handleUserNameChange}
+            />
           <br/><br/>
-          <button type="submit">Add user</button>
-        </form>
-      </div>
+          <Input placeholder="Email" onChange={this.handleEmailChange} />
+          <br/><br/>
+          <Input.Password placeholder="input password"  onChange={this.handlePasswordChange}/>
+          <br/><br/>
+          <Button type="primary" htmlType="submit" className="login-form-button">
+          Add User
+          </Button>
+        </Form>
+          </div>
+        </Content>
+        <FooterPage/>
+      </Layout>
     )
   }
 }

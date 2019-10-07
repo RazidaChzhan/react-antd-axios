@@ -3,7 +3,12 @@ import 'antd/dist/antd.css';
 import './LogIn.css';
 import { Row, Col } from 'antd';
 import { Form, Icon, Input, Button } from 'antd';
+import { Layout} from 'antd';
+import 'antd/dist/antd.css';
+import HeaderPage from './headerPage';
+import FooterPage from './footerPage';
 
+const { Content} = Layout;
 class NormalLoginForm extends React.Component {
   
     handleSubmit = e => {
@@ -18,7 +23,11 @@ class NormalLoginForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-        <Row>
+      <Layout>
+        <HeaderPage />
+        <Content style={{ padding: '0 50px', marginTop: 64 }}>
+          <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+          <Row>
             <Col span={8} offset={9}>
                 <Form onSubmit={this.handleSubmit} className="login-form">
                 <Form.Item>
@@ -56,8 +65,10 @@ class NormalLoginForm extends React.Component {
                 </Form>            
             </Col>
         </Row>
-
-      
+          </div>
+        </Content>
+        <FooterPage/>
+      </Layout>       
     );
   }
 }

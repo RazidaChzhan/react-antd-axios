@@ -1,5 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import { Input, Form, Button } from 'antd';
+import '../pages/LogIn.css';
+import { Layout} from 'antd';
+import 'antd/dist/antd.css';
+import HeaderPage from '../pages/headerPage';
+import FooterPage from '../pages/footerPage';
+
+const { TextArea } = Input;
+const { Content} = Layout;
  
 export default class PostNewsList extends React.Component {
   state = {
@@ -51,26 +60,28 @@ export default class PostNewsList extends React.Component {
  }
  
   render() {
-    return (  
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Title:
-            <input type="text" name="title" onChange={this.handleTitleChange} />
-            <br/><br/>
-            Description:
-            <input type="text" name="description" onChange={this.handleDescriptionChange} />
-            <br/><br/>
-            Body:
-            <input type="text"  name="body" onChange={this.handleBodyChange} /> 
-            <br/><br/>
-            Taglist:
-            <input type="text" name="taglist" onChange={this.handleTaglistChange} />
-          </label>
-          <br/><br/>
-          <button type="submit">Add article</button>
-        </form>
-      </div>
+    return ( 
+      <Layout>
+      <HeaderPage />
+      <Content style={{ padding: '0 50px', marginTop: 64 }}>
+        <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+        <Form onSubmit={this.handleSubmit} className="login-form">
+        <Input placeholder="Title" onChange={this.handleTitleChange}/>
+        <br/><br/>
+        <Input placeholder="Description" onChange={this.handleDescriptionChange}/>
+        <br/><br/>
+        <TextArea rows={4} placeholder="enter text of post" onChange={this.handleBodyChange} />
+        <br/><br/>
+        <Input placeholder="Taglist" onChange={this.handleTaglistChange}/>
+        <br/><br/>
+        <Button type="primary" htmlType="submit" className="login-form-button">
+        Add post
+        </Button>
+        </Form>
+        </div>
+      </Content>
+      <FooterPage/>
+    </Layout>    
     )
   }
 }
