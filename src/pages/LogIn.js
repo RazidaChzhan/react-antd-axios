@@ -1,5 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
+import axios from 'axios';
 import './LogIn.css';
 import { Row, Col } from 'antd';
 import { Form, Icon, Input, Button } from 'antd';
@@ -11,14 +12,48 @@ import FooterPage from './footerPage';
 const { Content} = Layout;
 class NormalLoginForm extends React.Component {
   
-    handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-  };
+  state = {
+    email: '',
+    password:'',
+    token: ''
+ }
+  handleEmailChange = event => {
+    this.setState({ email: event.target.value });    
+    }
+  handlePasswordChange = event => {   
+    this.setState({ password: event.target.value });   
+  } 
+    
+  saveDataToStorage = userRes => {
+        console.log('userRes', userRes);
+        localStorage.setItem('token', JSON.stringify(userRes.token));
+        localStorage.setItem('email', JSON.stringify(userRes.email));
+    }
+
+  handleSubmit = event => {
+    
+    event.preventDefault();
+ 
+    const user= {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    console.log('user', user);
+    console.log (this.props.form.getFieldValue("password"));
+    console.log (this.props.form.getFieldValue("username"));
+    
+    axios.post(`http://localhost:3000/api/users/login`, this.props.form.getFieldValue("password"),
+    this.props.form.getFieldValue("username"))
+    .then(res => {
+        if (res.status === 200){
+            const userRes = res.data.user;               
+            this.saveDataToStorage(userRes);
+        }
+    })
+    .catch(e => console.log(e));
+  }
+ 
 
   render() {
     const { getFieldDecorator } = this.props.form;
