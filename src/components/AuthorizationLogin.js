@@ -6,6 +6,7 @@ import '../pages/LogIn';
 import HeaderPage from '../pages/headerPage';
 import FooterPage from '../pages/footerPage';
 
+
 const { Content} = Layout; 
 export default class AuthorizationLogin extends React.Component {
   state = {
@@ -59,29 +60,13 @@ export default class AuthorizationLogin extends React.Component {
           <Input.Password placeholder="input password"  onChange={this.handlePasswordChange}/>
           <br/><br/>
           <Button type="primary" htmlType="submit" className="login-form-button">
-          Add User
+            Log In
           </Button>
         </Form>
           </div>
         </Content>
         <FooterPage/>
       </Layout>
-
-
-      // <div>
-      //   <form onSubmit={this.handleSubmit}>
-      //     <label>
-      //       Email:
-      //       <input type="email" name="email" onChange={this.handleEmailChange} />
-      //       <br/><br/>
-      //       Password:
-      //       <input type="password" onChange={this.handlePasswordChange} />
-      //       <br/><br/>
-      //      </label>
-      //     <br/><br/>
-      //     <button type="submit">Login</button>
-      //   </form>
-      // </div>
     )
   }
 }

@@ -28,7 +28,7 @@ export default class HeaderPage extends Component {
                     <NavLink to={{pathname:'/registration'}}/>
                     Регистрация 
             </Menu.Item>
-            <Menu.Item key="3">
+            <Menu.Item key="4">
                     <NavLink to={{pathname:'/login'}}/>
                     Авторизация
             </Menu.Item>

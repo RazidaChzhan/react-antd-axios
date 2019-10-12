@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {Helmet} from "react-helmet";
 import { Card, Col, Row } from 'antd';
+import { NavLink } from "react-router-dom";
  
 export default class PersonList extends React.Component {
   constructor(props) {
@@ -14,28 +15,40 @@ export default class PersonList extends React.Component {
     componentDidMount() {
     axios.get(`http://localhost:3000/api/articles?limit=10&offset=0 `)
       .then(res => {
-        const posts= res.data.articles;
-        console.log ('posts', posts);
+        console.log ('articles', res.data.articles);
         this.setState({articles: res.data.articles});
       })
   }
-   
+
+ 
   render() {
     const { articles } = this.state;
-    console.log('articles', articles);
     return (      
       <div>
             <Helmet>
                 <title>All posts</title>
             </Helmet> 
-            {articles.map(post => (
-                <div style={{ background: '#ECECEC', padding: '30px' }}>
+            {articles.map((article) => (
+                <div style={{ background: '#ECECEC', padding: '30px' }} key={article.slug}>
                     <Row gutter={24}>
                         <Col span={24}>
                             <Card 
-                            title={post.title} 
+                            title={article.title} 
                             bordered={false}>
-                            <p>Дата публикации: {post.createdAt.slice(0, 10)}</p> 
+                            <p>Дата публикации: {article.createdAt.slice(0, 10)}</p> 
+                            <NavLink to={{
+                                pathname:'/detail',
+                                articleProps:{
+                                    updatedAt:article.updatedAt,
+                                    createdAt:article.createdAt,
+                                    slug:article.slug,
+                                    author:article.author,
+                                    title:article.title,
+                                    description:article.description,
+                                    body:article.body,
+                                    tagList:article.tagList                                    
+                                }
+                            }} >Подробнee</NavLink>   
                              </Card>
                         </Col>
                     </Row>

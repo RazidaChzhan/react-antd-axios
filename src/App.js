@@ -6,6 +6,8 @@ import NotFound from './pages/notFound';
 import MainPage from './pages/mainPage';
 import PostNewsList from './components/PostNewsList';
 import AuthorizationLogin from './components/AuthorizationLogin';
+import DetailPage from './pages/detailPage';
+
 export default class App extends Component  {
   render () {
     return (
@@ -13,6 +15,7 @@ export default class App extends Component  {
         <Switch>
           <Route exact path="/" component={MainPage}/> 
           <Route exact path="/allposts" component={MainPage}/> 
+          <Route exact path="/detail" component={DetailPage}/>
           <Route path="/registration" component={UserRegistration} />
           <Route path="/login" component={AuthorizationLogin} />
           <Route path="/newpost" component={PostNewsList} />

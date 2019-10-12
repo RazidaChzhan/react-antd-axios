@@ -52,6 +52,8 @@ export default class PostNewsList extends React.Component {
         authT = token.substr(1,token.length -2)
     }
 
+    
+
     axios.post(`http://localhost:3000/api/articles`, {article}, {'headers': {'Authorization': `Token ${authT}`}})
     .then(res => {
         console.log('addArticle', res);
